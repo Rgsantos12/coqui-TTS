@@ -52,14 +52,15 @@ class MultiPhonemizer:
 
 # if __name__ == "__main__":
 #     texts = {
-#         "tr": "Merhaba, bu Türkçe bit örnek!",
-#         "en-us": "Hello, this is English example!",
-#         "de": "Hallo, das ist ein Deutches Beipiel!",
-#         "zh-cn": "这是中国的例子",
+#         # "tr": "Merhaba, bu Türkçe bit örnek!",
+#         # "en-us": "Hello, this is English example!",
+#         # "de": "Hallo, das ist ein Deutches Beipiel!",
+#         "pt": "Olá, este é um exemplo em português!",
 #     }
 #     phonemes = {}
-#     ph = MultiPhonemizer({"tr": "espeak", "en-us": "", "de": "gruut", "zh-cn": ""})
+#     ph = MultiPhonemizer({"pt": "espeak"})
 #     for lang, text in texts.items():
-#         phoneme = ph.phonemize(text, lang)
+#         # print(lang, text)
+#         phoneme = ph.phonemize(text=text, language=lang)
 #         phonemes[lang] = phoneme
 #     print(phonemes)

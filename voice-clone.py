@@ -13,8 +13,10 @@ if view_models == "y":
     print("TTS models:\n", all_models, "\n", sep = "")
 
 # Prompt model selection
-model = input("Enter model:\n")
-# for example, tts_models/pt/cv/vits
+# model = input("Enter model:\n")
+# for example, tts_models/pt/cv/vits 
+
+model = r"C:\Users\Utilizador\AppData\Local\tts\tts_models--pt--cv--vits"
 
 # Example voice cloning with selected model
 tts = TTS((model), progress_bar=True).to(device)

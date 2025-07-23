@@ -96,7 +96,7 @@ def get_speaker_audio_and_txt(data_dir, transcript_dir, speaker_id=None):
                             os.path.join("data/in", "wavs", f"real_{i}_{audio}"))
     # print(audio_files)
     # print(f"Found {len(audio_files)} audio files for speaker {speaker_id}")
-
+    
 
 # custom formatter implementation
 def custom_formatter(root_path, manifest_file, **kwargs):  # pylint: disable=unused-argument
@@ -134,20 +134,25 @@ if __name__ == "__main__":
     # get_speaker_audio_and_txt(data_dir, transcript_dir, speaker_id)
 
 
-    # Put this on main.py, and start finetuning a model
+
+
+
+
+
+    ############## DONE IN train_vits_tts_phonemes_ptpt.py ##########
+    # Start finetuning a model
     # https://docs.coqui.ai/en/latest/training_a_model.html
     # https://docs.coqui.ai/en/latest/finetuning.html
 
     # Load samples from the dataset
-    dataset_config = BaseDatasetConfig(
-        formatter=custom_formatter, meta_file_train="metadata.txt", language="pt-pt", path="data/in/"
-    )
+    # dataset_config = BaseDatasetConfig(
+    #     formatter=custom_formatter, meta_file_train="metadata.txt", language="pt-pt", path="data/in/"
+    # )
 
-    # Load training samples
-    train_samples, eval_samples = load_tts_samples(
-        dataset_config,
-        eval_split=True,
-        formatter=custom_formatter  # Pass the function here
-    )
-
-    print(f"Loaded {len(train_samples)} training samples and {len(eval_samples)} evaluation samples.")
+    # # Load training samples
+    # train_samples, eval_samples = load_tts_samples(
+    #     dataset_config,
+    #     eval_split=True,
+    #     formatter=custom_formatter  # Pass the function here
+    # )
+    # print(f"Loaded {len(train_samples)} training samples and {len(eval_samples)} evaluation samples.")
