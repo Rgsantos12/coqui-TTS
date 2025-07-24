@@ -64,10 +64,10 @@ def add_speakers_from_europarl_to_transcript(transcript_file, info_dir):
         file = temp_output
 
     # Replace original file with new version
-    os.replace(file, "data/in/real_transcriptV2.tsv")
+    os.replace(file, "data/real_transcriptV2.tsv")
 
     # Remove temporary file if it exists
-    for file in os.listdir('data/in'):
+    for file in os.listdir('data'):
         file_path = os.path.join('file', file)
         if file_path.endswith('.tmp'):
             os.remove(file_path)
@@ -81,7 +81,7 @@ def get_speaker_audio_and_txt(data_dir, transcript_dir, speaker_id=None):
         data_dir (str): Path to the dataset directory containing audio files.
         output_transcript_dir (str): Path to the directory where transcripts will be saved.
     """
-    file = "data/in/metadata.txt"
+    file = f"data/in-one-speaker/{speaker_id}/metadata.txt"
 
     # Obtain all audio files of a given speaker from tsv file
     with open(transcript_dir, 'r', encoding='utf-8') as fin, \
@@ -91,27 +91,27 @@ def get_speaker_audio_and_txt(data_dir, transcript_dir, speaker_id=None):
         for i, line in enumerate(fin, start=1):
             audio, text, speaker = line.strip().split('\t')
             if speaker == speaker_id:
-                fout.write(f"real_{i}_{audio}|{text}|{text}\n")
+                fout.write(f"real_{i}_{audio.replace('.wav', '')}|{text}|{text}\n")
                 shutil.copyfile(os.path.join(data_dir, f"real_{i}_{audio}"), 
-                            os.path.join("data/in", "wavs", f"real_{i}_{audio}"))
+                            os.path.join(f"data/in-one-speaker/{speaker_id}", "wavs", f"real_{i}_{audio}"))
     # print(audio_files)
     # print(f"Found {len(audio_files)} audio files for speaker {speaker_id}")
     
 
 # custom formatter implementation
-def custom_formatter(root_path, manifest_file, **kwargs):  # pylint: disable=unused-argument
-    """Assumes each line as ```<filename>|<transcription>```
-    """
-    txt_file = os.path.join(root_path, manifest_file)
-    items = []
-    speaker_name = "EUmember_4466"
-    with open(txt_file, "r", encoding="utf-8") as ttf:
-        for line in ttf:
-            cols = line.split("|")
-            wav_file = os.path.join(root_path, "wavs", cols[0])
-            text = cols[1]
-            items.append({"text":text, "audio_file":wav_file, "speaker_name":speaker_name, "root_path": root_path})
-    return items
+# def custom_formatter(root_path, manifest_file, **kwargs):  # pylint: disable=unused-argument
+#     """Assumes each line as ```<filename>|<transcription>```
+#     """
+#     txt_file = os.path.join(root_path, manifest_file)
+#     items = []
+#     speaker_name = "EUmember_4466"
+#     with open(txt_file, "r", encoding="utf-8") as ttf:
+#         for line in ttf:
+#             cols = line.split("|")
+#             wav_file = os.path.join(root_path, "wavs", cols[0])
+#             text = cols[1]
+#             items.append({"text":text, "audio_file":wav_file, "speaker_name":speaker_name, "root_path": root_path})
+#     return items
 
 
 if __name__ == "__main__":
@@ -123,17 +123,15 @@ if __name__ == "__main__":
     - EUmember_28406
     ...
     """
-    transcript_old_dir = "data/in/real_transcript.tsv"
-    transcript_dir = "data/in/real_transcriptV2.tsv"  # Replace with your dataset path
+    transcript_old_dir = "data/real_transcript.tsv"
+    transcript_dir = "data/real_transcriptV2.tsv"  # Replace with your dataset path
     info_dir = r"C:\Users\Utilizador\OneDrive\Documentos\Europarl-st v1.1\pt\en"
     data_dir = r"E:\Datasets\synthetic-speech-detection-dataset-ptpt\real"
     
     # add_speakers_from_europarl_to_transcript(transcript_old_dir, info_dir) Done
     
-    speaker_id = "EUmember_4466"  # Example speaker ID
-    # get_speaker_audio_and_txt(data_dir, transcript_dir, speaker_id)
-
-
+    speaker_id = "EUmember_96976"  # Example speaker ID
+    get_speaker_audio_and_txt(data_dir, transcript_dir, speaker_id)
 
 
 

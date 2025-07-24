@@ -13,12 +13,16 @@ if view_models == "y":
     print("TTS models:\n", all_models, "\n", sep = "")
 
 # Prompt model selection
-# model = input("Enter model:\n")
+model = input("Enter model:\n")
 # for example, tts_models/pt/cv/vits 
 
-model = r"C:\Users\Utilizador\AppData\Local\tts\tts_models--pt--cv--vits"
+# Win
+# model = r"C:\Users\Utilizador\AppData\Local\tts\tts_models--pt--cv--vits"
+# Ubuntu
+# model = "/home/rgsantos/.local/share/tts/tts_models--pt--cv--vits"
 
 # Example voice cloning with selected model
 tts = TTS((model), progress_bar=True).to(device)
-tts.tts_to_file("Olá pessoal sou o mister nikki e cá estamos para mais um vídeo.", speaker_wav="train-audio.wav"
+tts.tts_to_file("Olá pessoal sou eu, como estão?", speaker_wav="train-audio.wav"
                 , file_path="data/out/output.wav")
+

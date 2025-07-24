@@ -119,6 +119,7 @@ venv.bak/
 *.pth.tar
 !dummy_speakers.pth
 result/
+models/
 
 # setup.py
 version.py
