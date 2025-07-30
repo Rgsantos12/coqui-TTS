@@ -178,3 +178,4 @@ Scripts/
 Lib/
 Include/
 pyvenv.cfg
+share/
