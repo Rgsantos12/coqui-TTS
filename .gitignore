@@ -119,6 +119,7 @@ venv.bak/
 *.pth.tar
 !dummy_speakers.pth
 result/
+models/
 
 # setup.py
 version.py
@@ -170,3 +171,11 @@ depot/*
 coqui_recipes/*
 local_scripts/*
 coqui_demos/*
+
+# Ignore virtual environment created in project root
+!scripts/sync_readme.py
+Scripts/
+Lib/
+Include/
+pyvenv.cfg
+share/
