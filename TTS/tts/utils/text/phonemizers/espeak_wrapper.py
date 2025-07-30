@@ -250,15 +250,15 @@ class ESpeak(BasePhonemizer):
 
 
 if __name__ == "__main__":
-    e = ESpeak(language="en-us")
+    e = ESpeak(language="pt") #has both pt and pt-pt
     print(e.supported_languages())
     print(e.version())
     print(e.language)
     print(e.name())
     print(e.is_available())
 
-    e = ESpeak(language="en-us", keep_puncs=False)
-    print("`" + e.phonemize("hello how are you today?") + "`")
+    # e = ESpeak(language="pt-pt", keep_puncs=False)
+    print("`" + e.phonemize("Olá, como estás?") + "`")
 
-    e = ESpeak(language="en-us", keep_puncs=True)
-    print("`" + e.phonemize("hello how are you today?") + "`")
+    # e = ESpeak(language="en-us", keep_puncs=True)
+    # print("`" + e.phonemize("hello how are you today?") + "`")
