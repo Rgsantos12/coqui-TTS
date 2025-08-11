@@ -1,3 +1,4 @@
+import os
 from dataclasses import dataclass, field
 
 from trainer import Trainer, TrainerArgs
@@ -6,7 +7,7 @@ from TTS.config import load_config, register_config
 from TTS.tts.datasets import load_tts_samples
 from TTS.tts.models import setup_model
 
-# From train_tss.py
+# From train_tts.py - use this by running fine-tune.bat/continue-training.bat
 # https://docs.coqui.ai/en/latest/finetuning.html
 
 @dataclass
