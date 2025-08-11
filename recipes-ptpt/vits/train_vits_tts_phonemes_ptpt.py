@@ -16,10 +16,10 @@ def main():
     print(f"Check cuda availability: {torch.cuda.is_available()}")
 
     print("Starting training script...")
-    output_path = "models/trained/one-voice"
+    output_path = "../../models/trained/one-voice/vits/EUmember_96706/"
 
     dataset_config = BaseDatasetConfig(
-        formatter="ljspeech", meta_file_train="metadata.txt", path=os.path.join("data", "in-one-speaker", "EUmember_4466")
+        formatter="ljspeech", phonemizer="espeak", language="pt", meta_file_train="metadata.txt", path=os.path.join(r"C:\Users\Utilizador\OneDrive\Documentos\synthetic-audio-gen\TTS\data", "in-one-speaker", "EUmember_96706")
     )
 
     audio_config = VitsAudioConfig(
@@ -33,8 +33,7 @@ def main():
 
     config = VitsConfig(
         audio=audio_config,
-        run_name="vits_ssdpt-eumember_4466",
-        # use_speaker_embedding=True,
+        run_name="vits_ssdpt-eumember_96706",
         batch_size=32,
         eval_batch_size=16,
         batch_group_size=5,
@@ -44,13 +43,13 @@ def main():
         test_delay_epochs=-1,
         epochs=1000,
         save_on_interrupt=True,
-        save_step=10000, # Number of training steps expected to save traning stats and checkpoints.
+        save_step=50, # Number of training steps expected to save traning stats and checkpoints.
+        save_best_after=1000,
         save_checkpoints=True, # If true, it saves checkpoints per "save_step"
         text_cleaner="portuguese_cleaners", #portuguese_cleaners(basic (phonemizer does the rest)(text.replace("&", " e "))) #multilingual_cleaners(not needed for pt only)
         use_phonemes=True, #True <- helps in convergence, for now its turned on
         phoneme_language="pt", #None #(pt works too)
-        phonemizer="espeak", # Use the custom phonemizer(espeak)  #multi_phonemizer
-        phoneme_cache_path=os.path.join(output_path, "phoneme_cleaners"),
+        phoneme_cache_path=os.path.join(output_path, "phoneme_cache"),
         compute_input_seq_cache=True,
         print_step=5,
         print_eval=True,

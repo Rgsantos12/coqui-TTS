@@ -1,3 +1,3 @@
 @echo off
 set CUDA_VISIBLE_DEVICES=0
-python "vits/train_vits_tts_phonemes_ptpt.py" --continue_path "models/fine-tuned/one-voice/vits_ssdpt-eumember_96976-July-24-2025_06+25PM-1df082d3" 
+python "train_tts.py" --continue_path "C:\Users\Utilizador\OneDrive\Documentos\synthetic-audio-gen\TTS\models\trained\one-voice\vits\EUmember_96706\vits_ssdpt-eumember_96706-July-31-2025_04+46PM-c776d321" 
